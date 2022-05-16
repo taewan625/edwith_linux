@@ -1,0 +1,57 @@
+linux_directory_structure
+
+/
+bin   dev  home  lib    lost+found  mnt  proc  run   snap  sys  usr
+boot  etc  init  lib64  media       opt  root  sbin  srv   tmp  var
+
+/     : 최상위 root
+/home : 사용자 linux_directory
+/bin  : 실행프로그램 존재
+/boot : 부팅과 관련된 파일 존재
+/lib  : c library를 비롯한 각종 프로그램 라이브러리
+/mnt  : usb 등 마운트한 저장장치, window로 통하는 경로
+/usr  : package 관리 프로그램이 설치한 프로그램
+/usr/local : 사용자가 직접 설치한 프로그램이 있음
+
+# 명령어
+
+데비안 계열, ubuntu 는 APT package 관리자 사용              cf) RedHat 계열, CentOS는 YUM package 관리자 사용
+sudo apt-get update # update 목록을 갱신
+sudo apt-get upgrade # 현재 package를 다운받고 알아서 upgrade
+sudo apt-get dist-upgrade # upgrade 관련 package들의 모든 관계를 확인하고 upgrade
+                          # 경우에 따라 일부 package 삭제
+sudo apt-get clean        # 설치 및 upgrade 완료 후 다운로드된 package를 삭제
+sudo apt-get autoclean    # 설치된 package는 두고 구버젼 package만 삭제하는 명령어
+
+
+쉘(CUI)에서 linux 다루기
+ls  # 현재 directory 안의 항목 조회
+ls -a  # 숨겨진 항목들 전부 조회   .으로 된것이 숨겨진 파일
+ls -l  # 목록형 형식으로 출력
+
+man [command] # command에 대한 manual 보기
+ex) man ls
+
+mkdir # directory_name 이름으로된 directory 생성
+rmdir # directory_name 이름으로된 directory 삭제
+
+pwd # 현재 경로 확인
+cd [path] # path 경로로 이동
+cd .. # 상위 폴더
+
+sudo su # root 주소로 전환 -> 관리자로 변경되어 ~# 로 변경됨
+su username 하면 돌아옴
+
+
+# 쉘에서 USB 연결하여 데이터 가져오기
+USB 별 파일시스템
+NTFS   : window에서 주로 사용되는 파일시스템
+ISO    : CD-ROM 매체를 위한 파일시스템
+EXT1~4 : 리눅스 유닉스에서 주로 사용되는 파일시스템
+ZFS    : 기존 유닉스 파일시스템 대체 - 문한대의 용량 제공
+APFS   : 애플의 암호화, 플래시 기반 - macOS,iOS에서 사용
+
+NTFS는 별도 progrem 설치가 필요 (code 틀렸을 가능성이 높아서 확인 필요)
+sudo apt-get update
+sudo apt-get install epel-release  # 확장 기능 EPEL 설치
+sudo apt-get ntfs-3g               # NTFS 파일시스템 설치
