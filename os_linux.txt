@@ -1,0 +1,35 @@
+OS: 모든 하드웨어와 모든 소프트웨어를 관리하는 관리자 역할
+    HDD -> OS -> App -> User
+
+Linux
+1. 높은 신뢰성
+2. 다중 사용자 및 다중 처리 시스템
+3. 오픈소스
+4. 다양한 파일시스템 지원
+5. 유연성과 확장성
+
+UNIX_solaris,aix,bsd,hp ux,irix -> linux_redhat,debian,ubuntu,mint,suse
+                                -> Mac OS_macOS,iOS,Macintosh
+                                --> window
+
+linux 2가지 의미
+ 1. kernel
+ 2. kernel-shell-application 다 합한 것
+
+linux 구조
+app = apache(웹서버), python(프로그래밍언어), mysql(database)
+shell ; app을 사용할 수 있는 interface 역할 = csh, bash, zsh     * shell ; kernel을 감싼다고 해서 shell이라고 명함 
+                                                                 * interface : 전기 신호의 변환으로 중앙 처리 장치와 그 주변 장치를 서로 잇는 부분
+kernel : linux kernel 자체만으로도 linux라고 한다
+
+linux 배포판
+; 사용자가 쓰기 편리하도록 linux kernel에 각종 package(=응용 프로그램)을 결합하여 독립적으로 배포
+종류 : ubuntu, linux mint, fedora, centOS
+
+linux 배포판 2가지 계열
+1. debian 계열_ubuntu, linux mint
+   서버의 목적보다 개인 사용자가 PC에서 쓰기 적합 / 지속적인 기술 업데이트
+2. redhat 계열_fedora,centOS
+   서버용 OS가 목적으로 보안,안정성 좋음 / 안정성이 우선
+
+이번 강의에서는 centOS가 생물정보관련에서 적절해서 이걸로 실습을 한다고 함
