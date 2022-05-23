@@ -1,0 +1,49 @@
+1. SSH server and client
+ssh = secure shell ; network 상 다른 컴퓨터에 login하거나 원격 시스템에서 명령을 실행하고
+                     다른 시스템으로 파일을 복사할 수 있도록 해 주는 응용 프로그램 또는 프로토콜
+
+ssh 이용 조건 : 서버 컴퓨터는 ssh server install 해야하고 개인컴퓨터는 아마 ssh client가 필요로 하는 것으로 알고 있다.
+GUI로 쉽게 확인하기 위해서 xshell, putty를 사용한다.
+
+
+2. Putty 프로그램으로 리눅스 접속
+1) putty download 받기
+2) putty 접속시 Host Name : 접속할 서버 주소 넣기  / Saved Sessions : 저장할 이름으로 save 하면 다음에도 사용 가능
+
+# ubuntu에서 putty, xshell 를 통한 ssh 이용하기 https://nov19.tistory.com/65  https://codechacha.com/ko/ubuntu-install-openssh/
+https://jjeongil.tistory.com/1355  https://security-nanglam.tistory.com/325
+
+1. Openssh 서버 설치
+sudo apt install openssh-server  : ubuntu엔 client는 이미 설치 되어 있으므로 server만 설치
+sudo apt install ssh             : 만약 client,server 둘다 없을 시 섪치 명령어 
+
+2. ssh서비스 시작     
+sudo service ssh start 
+
+3. network 사용 경로 확인
+sudo netstat - antp        : sshd가 22번 포트를 사용하고 있음을 볼 수 있다.
+4. 방화벽을 사용하면 22번 포트 사용을 허가
+sudo allow 22
+
+3. 윈도우에 푸티 putty 설치 
+
+4. xshell, putty를 사용하여 리눅스 서버에 접속 
+
+
+3. linux 기본 명령어 
+
+mkdir dir : Create a new directory dir
+rmdir dir : Delete directory dir
+ls dir    : List contents directory dir
+
+touch file      : Create file file
+cp file1 file2  : Copy file1 to file2
+mv file1 file2  : Move file1 to file2
+rm file         : Delete file
+cat file        : Display contents of file
+cat file1 file2 : Concatenate files
+less file       : Display file, q to quit
+head file       : Show first 10 lines
+tail file       : show lat 10 lines
+
+ls -al : 소유권 만든 날짜 용량 확인 가능
