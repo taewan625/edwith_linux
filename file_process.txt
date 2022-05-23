@@ -1,0 +1,105 @@
+1. linux에서 file 다루기와 표준 입출력을 배움
+2. 파일 소유권 지정과 파일 압축과 해제 배움
+3. 프로그램 실행과 파이프의 사용법을 숙지
+4. 원격 파일 전송, 프로세스 관리하는 법을 배움
+
+1. 파일 다루기 : head, tail
+
+2. diff : 파일 두개를 비교하여 차이를 나타냄
+
+< abcd... : 처음파일에 존재하는 것
+> efgh... : 비교파일에 존재하는 것
+
+3. more : file을 부분별로 출력할 때
+   $ cat big_file.txt | more  # cat은 모든 정보를 출력하는 것이고 more로 인해 한 페이지씩 보여줌 n, space로 페이지 넘김
+   less : more 보다 빠르다
+   $ less big_file.txt  # 현재 화면에서 보여지는 부분까지 보여주고 한줄아래 j, 한줄위 k, 한페이지 아래 ctrl-f 한페이지 위 ctrl-b
+
+4. redirection : 출력된 값들을 파일에 담을 때 사용
+$ [command] > [filename] ; command에 화면에 출력할 명령어를 작성하고 > 뒤에 이를 담을 파일이름을 작성
+    ~/edlinux  ls                                                      ✔  21:09:43 
+abc.txt
+
+    ~/edlinux  ls > abc.txt                                            ✔  21:18:14 
+
+    ~/edlinux  cat abc.txt                                             ✔  21:18:27 
+abc.txt
+
+
+2. 파일 실행 권한과 소유권
+ ls -l                                                   ✔  21:25:06 
+total 28
+-rw-r--r-- 1 taewan taewan     8 May 17 21:18 abc.txt
+-: file file type. file이면 - , directory면 d
+
+ls -l                                                           ✔  21:25:19 
+total 4
+drwxr-xr-x 2 taewan taewan 4096 May 17 21:23 edlinux
+d: directory file type
+rwx: 읽고4 쓰고2 실행1 권한을 주는 것
+d / rwx =7   / r-x 5 / r-x 5  ->755라고 명할수 있음
+    소유자 / 그룹 / 그 외 사용자
+
+
+✨chmod : 파일이나 디렉토리의 권한을 바꿔주는 명령어
+
+    ~/edlinux  chmod u=rwx,g=r,o=r abc.txt                           1 ✘  21:35:03    or chmod 744 abc.txt
+
+    ~/edlinux  ls -l                                                   ✔  21:35:17 
+total 4
+-rwxr--r-- 1 taewan taewan 8 May 17 21:18 abc.txt
+
+✨tar : directory나 여러개의 파일을 하나의 파일로 묶는 명령어  압축아님
+
+$ tar -cvf [filename] [path]       : -c 가 묶는 역할
+$ tar -xvf [tar filename] [path]   : -x 가 푸는 역할
+
+추가 option : -f; tar 파일을 사용할 때 사용  | -v; 묶거나 풀 때 과정보기
+-cvf: 묶고 과정보고 파일임
+## 예제는 조금 더 찾아보기
+묶기
+    ~/edlinux  ls                                                      ✔  10:29:18 
+a.txt  abc.txt  b.txt  c.txt
+
+    ~/edlinux  tar -cvf comp.tar *.txt                                 ✔  10:29:19 
+a.txt
+abc.txt
+b.txt
+c.txt
+
+    ~/edlinux  ls                                                      ✔  10:30:05 
+a.txt  abc.txt  b.txt  c.txt  comp.tar
+
+풀기
+    ~/edlinux/test  tar -xvf comp.tar                                  ✔  10:31:13 
+a.txt
+abc.txt
+b.txt
+c.txt
+
+✨ gzip : 압축을 하는 명령어  + windows는 파일을 묶고 압축을 동시에 하지만 terminal에서는 tar로 묶고 gzip으로 압축
+$ gzip [filename]               : 압축
+$ gzip -d [compressed filename] : 압축풀기
+
+TIP : tar 명령어에 -z 추가하면 압축도 동시에 진행
+
+원격 파일전송: ftp (sftp), wget
+
+ftp: URL을 이용하여 인터넷에서 받을수 있는 파일을 내려받을 때 사용하는 명령어이다
+     sftp도 ftp와 사용법이 같다
+$ ftp [URL]
+$ ftp [ip]
+$ ftp [user id]@[URL]
+
+wget: URL을 이용하여 인터넷에서 받을 수 있는 파일을 내려받을 때 사용하는 명령어
+$ wget [URL]
+
+프로세스 관리 : ps, kill, top
+ps: 현재 실행되고 있는 프로세스들을 보여주는 명령어
+$ ps [options]
+$ ps -aux | grep ' emacs'
+
+kill: 실행 취소
+
+top : 실시간 구동되는 process 현황
+
